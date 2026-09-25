@@ -1,0 +1,29 @@
+class BankAccount:
+    def __init__(self, name, balance=0):
+        self.name = name
+        self.balance = balance
+
+    def deposit(self):
+        try:
+            amount = float(input("Give me the amount of money to deposit: "))
+            if amount <= 0:
+                raise ValueError("Number must be greater than zero.")
+            self.balance += amount
+            print(f"Success! You added: ${amount} to your account")
+        except ValueError as e:
+            print(f"Error: {e}")
+
+    def withdraw(self):
+        try:
+            amount = float(input("Give me the amount of money to withdraw: "))
+            if amount <= 0:
+                raise ValueError("Number must be greater than zero.")
+            if amount > self.balance:
+                raise ValueError("Number must be less than the actual balance.")
+            self.balance -= amount
+            print(f"Success! You have withdrawn: ${amount} to your account")
+        except ValueError as e:
+            print(f"Error: {e}")
+
+    def check_balance(self):
+        print(f"Actual Balance of {self.name}: {self.balance}")
